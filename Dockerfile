@@ -22,7 +22,8 @@ RUN apt-get update && \
         libtesseract-dev \
         libjpeg-dev \
         zlib1g-dev \
-        libpng-dev && \
+        libpng-dev \
+        poppler-utils && \
     python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
@@ -43,3 +44,4 @@ RUN apt-get update && \
 
 ENV PATH="/py/bin:$PATH"
 USER django-user
+

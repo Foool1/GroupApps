@@ -6,3 +6,4 @@ pyzbar
 requests
 pytesseract
 Pillow>=9.0.0
+pdfplumber==0.1.2
