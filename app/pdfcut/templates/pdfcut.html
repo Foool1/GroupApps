@@ -8,6 +8,49 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>pdf cutter</h1>
+    <h1>PDF Cutter</h1>
+
+    <div class="exit">
+        <a href="{% url 'main-page' %}">Exit</a>
+    </div>
+
+    <div class="container">
+        <h4>Input pdf file to cut</h4>
+        <input type="file" id="imageInput" accept="image/*">
+        <button onclick="uploadImage()">Send</button>
+        <p id="status"></p>
+    </div>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        function uploadImage() {
+            const imageInput = document.getElementById('imageInput');
+            const status = document.getElementById('status');
+            const file = imageInput.files[0];
+
+            if (!file) {
+                status.textContent = 'Choose the image!';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/api/pdf/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                status.textContent = data.message;
+                document.getElementById('output').innerText = data.filename
+            })
+            .catch(error => {
+                status.textContent = 'Sending image error';
+                console.error('Error:', error);
+            });
+}
+    </script>
 </body>
 </html>

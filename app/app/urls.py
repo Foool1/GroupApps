@@ -41,6 +41,7 @@ from ocr.views import (
 )
 
 from pdfcut.views import (
+    pdfcutAPIView,
     pdf_view,
 )
 urlpatterns = [
@@ -59,5 +60,5 @@ urlpatterns = [
     path('api/encoder/', EncoderAPIView.as_view(), name='api-encoder'),
     path('api/upload/', ImageUploadView.as_view(), name='upload'),
     path('api/ocr/', ocrAPIView.as_view(), name='api-ocr'),
-
+    path('api/pdf/', pdfcutAPIView.as_view(), name='api-pdf'),
 ]
