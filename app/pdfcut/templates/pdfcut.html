@@ -15,7 +15,7 @@
     </div>
 
     <div class="container">
-        <h4>Input pdf file to cut</h4>
+        <h4>Input pdf file to extract</h4>
         <input type="file" id="pdfInput" accept="application/pdf">
         <button onclick="uploadPDF()">Send</button>
         <p id="status"></p>
@@ -28,12 +28,10 @@
             const pdfInput = document.getElementById('pdfInput');
             const status = document.getElementById('status');
             const file = pdfInput.files[0];
-
             if (!file) {
                 status.textContent = 'Choose a PDF file!';
                 return;
             }
-
             const formData = new FormData();
             formData.append('pdf', file);  // Fix key to match backend
 
